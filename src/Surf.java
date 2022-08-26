@@ -78,6 +78,8 @@ public class Surf{
         return dir;
     }
 
-
-
+    @Override
+    public String toString() {
+        return page.toString();
+    }
 }

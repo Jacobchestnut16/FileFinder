@@ -1,4 +1,5 @@
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.Arrays;
@@ -12,6 +13,9 @@ public class Window extends JFrame {
     private PanelHandler p = new PanelHandler(surf.listFiles());
     private JPanel main = new JPanel();
     private JButton[] dir = p.getButtons();
+
+    private JPanel innerPanel = new JPanel(new GridLayout(2,0));
+
     public Window(){
         super();
         super.setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -20,12 +24,31 @@ public class Window extends JFrame {
             d.addMouseListener(ml);
             main.add(d);
         }
-        super.add(main);
+        customMenuBar();
 
-
-
+        innerPanel.add(cmb);
+        innerPanel.add(main);
+        super.add(innerPanel);
         super.setFocusable(true);
         super.setVisible(true);
+        //super.pack();
+    }
+    private JPanel cmb = new JPanel(new GridLayout(0,5));
+
+    public void customMenuBar(){
+        cmb.setMaximumSize(new Dimension(5000, 20));
+        cmb.setPreferredSize(new Dimension(35, 20));
+        JButton forward = new JButton("->");
+        JButton back = new JButton("<-");
+        forward.setMaximumSize(new Dimension(5000, 20));
+        forward.setPreferredSize(new Dimension(35, 20));
+        back.setMaximumSize(new Dimension(5000, 20));
+        back.setPreferredSize(new Dimension(35, 20));
+        cmb.add(back);
+        cmb.add(forward);
+        JTextArea directory = new JTextArea();
+        directory.setText(surf.toString());
+        cmb.add(directory);
     }
 
     public void updateFrame(){
