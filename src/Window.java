@@ -50,6 +50,8 @@ public class Window extends JFrame {
         JTextArea directory = new JTextArea();
         directory.setText(surf.toString());
         cmb.add(directory);
+        forward.addMouseListener(ml);
+        back.addMouseListener(ml);
     }
 
     public void updateFrame(){
@@ -77,11 +79,11 @@ public class Window extends JFrame {
                     updateFrame();
                 }
                 if (e.getSource() == forward){
-                    surf.openFile(-1);
+                    surf.openFile(-2);
                     updateFrame();
                 }
                 if (e.getSource() == back){
-                    surf.openFile(-2);
+                    surf.openFile(-1);
                     updateFrame();
                 }
             }
