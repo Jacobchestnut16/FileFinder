@@ -16,6 +16,9 @@ public class Window extends JFrame {
 
     private JPanel innerPanel = new JPanel(new GridLayout(2,0));
 
+    public JButton forward = new JButton("->");
+    public JButton back = new JButton("<-");
+
     public Window(){
         super();
         super.setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -38,8 +41,6 @@ public class Window extends JFrame {
     public void customMenuBar(){
         cmb.setMaximumSize(new Dimension(5000, 20));
         cmb.setPreferredSize(new Dimension(35, 20));
-        JButton forward = new JButton("->");
-        JButton back = new JButton("<-");
         forward.setMaximumSize(new Dimension(5000, 20));
         forward.setPreferredSize(new Dimension(35, 20));
         back.setMaximumSize(new Dimension(5000, 20));
@@ -73,6 +74,14 @@ public class Window extends JFrame {
             for (int i = 0; i < dir.length; i ++) {
                 if (e.getSource() == dir[i]){
                     surf.openFile(i);
+                    updateFrame();
+                }
+                if (e.getSource() == forward){
+                    surf.openFile(-1);
+                    updateFrame();
+                }
+                if (e.getSource() == back){
+                    surf.openFile(-2);
                     updateFrame();
                 }
             }
