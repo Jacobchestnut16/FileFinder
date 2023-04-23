@@ -2,8 +2,53 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.util.Arrays;
-import java.util.Scanner;
+
+
+/*
+Bug list:
+
+-file feature back fwr too far in each direction
+        *finding goes to max
+        **multi click issue
+            #* Solutions:
+                -adaptive clicking
+                -two press click / simple
+                -delay click average
+ */
+
+/*
+Features to add in 1.3:
+
+-directory list with named files  //search
+-file renaming system + dir
+-list history?? detached first
+-light dark version view
+
+
+
+Features to add in 1.4:
+
+-search function in scope 1
+-dropdown bar for fast search
+
+Features ot add in 1.5:
+-add dir
+-add file
+
+Features to add in 1.6:
+-remove dir
+-remove file
+
+1.7 debug features~~
+
+1.8 clean up~~
+
+Features ot add in 1.9:
+-move file
+
+Feature to add in 2.0:
+~~
+ */
 
 public class Window extends JFrame {
     public static void main(String[] args) {
@@ -47,6 +92,11 @@ public class Window extends JFrame {
         back.setPreferredSize(new Dimension(35, 20));
         cmb.add(back);
         cmb.add(forward);
+        /*
+        Directory should be fitting into a separate JPanel that is set a size height
+        then re added into the origin panel
+        
+         */
         JTextArea directory = new JTextArea();
         directory.setText(surf.toString());
         cmb.add(directory);
@@ -73,6 +123,7 @@ public class Window extends JFrame {
     private MouseListener ml = new MouseListener() {
         @Override
         public void mouseClicked(MouseEvent e) {
+            System.err.println("this click");
             for (int i = 0; i < dir.length; i ++) {
                 if (e.getSource() == dir[i]){
                     surf.openFile(i);
@@ -86,6 +137,7 @@ public class Window extends JFrame {
                     surf.openFile(-1);
                     updateFrame();
                 }
+                //surf.printHistory();
             }
         }
 
